@@ -23,7 +23,7 @@ export default function App(){
 
   const deleteTaskHandler = taskId => {
     setTasks(currentTasks => {
-      return currentTasks.filter(task => task.id !== taskId)
+      return currentTasks.filter(tasks => task.id !== taskId)
     })
   }
 
@@ -41,8 +41,22 @@ export default function App(){
       <ToDoInput
         visible = {addTasks}
         onAddTask = {addTaskHandler}
-        onCancel  = {cancelTaskHandlerr}
+        onCancel  = {cancelTaskHandler}
       ></ToDoInput>
+       </View>
+      <DisplayImage taskStatus={tasks} ></DisplayImage>
+      <View style={styles.screenList}>
+        <FlatList
+          keyExtractor={(item,index) => item.id}
+          data={tasks}
+          renderItem={itemData => (
+            <ToDoItem title = {itemData.item.value}
+            onDelete = {deleteTaskHandler}
+            id = {itemData.item.id}
+            />
+          )}
+        ></FlatList>
+     
     </View>
    </View>
   )
@@ -53,5 +67,9 @@ const styles = StyleSheet.create({
     paddingTop: 70,
     paddingHorizontal: 70
   
+  },
+  screenList: {
+    marginLeft: 20,
+    marginRight: 20
   }
 })
