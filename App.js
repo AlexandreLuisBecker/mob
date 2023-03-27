@@ -23,7 +23,7 @@ export default function App(){
 
   const deleteTaskHandler = taskId => {
     setTasks(currentTasks => {
-      return currentTasks.filter(tasks => task.id !== taskId)
+      return currentTasks.filter(tasks => tasks.id !== taskId)
     })
   }
 
